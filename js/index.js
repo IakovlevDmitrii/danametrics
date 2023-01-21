@@ -4,8 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
   analyticVector()
   // zoomCards()
   tryParallax()
+  showConfidence()
   showIndicators()
-  showPartners()
+  // showPartners()
 
   const bubble1 = document.querySelector('.hero_main__animation-img-bubble--1'),
     bubble2 = document.querySelector('.hero_main__animation-img-bubble--2'),
@@ -27,9 +28,6 @@ function heroAnimation(){
   const gridHeight = window.getComputedStyle(grid).getPropertyValue("grid-template-rows").split('px ')
   const [gridHeight1, gridHeight2] = gridHeight
 
-  console.log({ gridColWidth1, gridColWidth2, gridColWidth3, gridColWidth4, gridHeight1, gridHeight2 })
-
-
   const block1 = document.querySelector('.hero_main__animation-img-wrapper--1'),
   block2 = document.querySelector('.hero_main__animation-img-wrapper--2'),
   block3 = document.querySelector('.hero_main__animation-img-wrapper--3'),
@@ -43,7 +41,7 @@ function heroAnimation(){
 
     //Hero Pics animations
     const tlHeroAnim = gsap.timeline({
-      defaults: { // children inherit these defaults
+      defaults: {
         duration: 0.7,
         ease: 'bounce',
         delay: 0.2
@@ -118,13 +116,6 @@ function heroAnimation(){
       '-=220%')
     .to(block3, { //graph
       width: gridColWidth1,
-
-
-
-      // height: gridHeight2, //
-
-
-
       x: 0,
     },
       '-=120%')
@@ -134,7 +125,7 @@ function heroAnimation(){
       '<')
     .add('pics-end')
 
-    //arrow on hero animation
+    //arrow on 01-hero animation
   tlHeroAnim.to(arrow, {
     clipPath: `polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%)`,
     delay: 1.5,
@@ -170,8 +161,6 @@ function shakeBubble(bubble, deg){
       ease: 'elastic',
       repeat: -1,
       yoyo: true,
-      // repeat: -1,
-      // yoyo: true
     }).pause()
 }
 
@@ -186,82 +175,7 @@ function underlineAnimation(){
   })
 }
 
-/**
- *   tlHeroAnim
- .to(animationGrid, {
-      delay: 0.5,
-      duration: 1,
-      clipPath: 'circle(100% at 55% 50%)',
-      ease: 'none',
-    })
- .to(block3, {
-      duration: 0.5,
-      rotate: 360,
-      ease: 'elastic',
-    },
- '-=180%')
- .to(block1, { //man
-    height: gridColWidth1,
-    y: 0,
-  },
- '-=80%')
- .to(block1, {
-      width: gridColWidth1 + gridColWidth2,
-      x: 0,
-    })
- .to(block6, { //pink egg
-      x: gridColWidth4,
-    },
- '-=220%')
- .to(block6, {
-      height: gridColWidth1,
-      y: 0,
-    },
- '-=30%')
- .to(block5, { // guy
-      width: gridColWidth1,
-      x: 0,
-    },
- '-=150%')
- .to(block5, {
-      delay: 0,
-      height: gridColWidth1,
-      y: 0,
-    },
- '-=20%')
- .to(block2, { //bot
-      height: gridColWidth1,
-      y: 0,
-    },
- '-=180%')
- .to(block2, {
-      width: gridColWidth1,
-      x: 0,
-    },
- '-=80%')
- .to(block7, { //blue egg
-      width: gridColWidth2 + gridColWidth3,
-      x: 0,
-    },
- '-=220%')
- .to(block7, {
-      height: gridColWidth1,
-      y: 0,
-    })
- .to(block6, { //pink egg
-      x: 0
-    },
- '-=220%')
- .to(block3, { //graph
-      width: gridColWidth1,
-      x: 0,
-    },
- '-=120%')
- .to(block4, { //girl
-      width: gridColWidth2 + gridColWidth3 + gridColWidth4,
-    },
- '<')
- */
+// plane animation
 function analyticVector () {
   gsap.timeline({defaults: {duration: 1}})
   .from(".slogan_step", {
@@ -273,7 +187,7 @@ function analyticVector () {
     },
     scrollTrigger: {
       trigger: '.slogan',
-      start: "top-=650px",
+      start: "top-=650px 20%",
       end: "bottom-=550px",
       scrub: true
     }
@@ -291,9 +205,8 @@ function tryParallax () {
     .from('.usage', {
     scrollTrigger: {
       trigger: '.usage',
-      // markers: true,
-      start: "top 30%",
-      end: "bottom 10%"
+      start: "top 80%",
+      end: "bottom 20%"
     }
   })
     .fromTo('.usage-img', {
@@ -365,14 +278,14 @@ function tryParallax () {
     });
 }
 
-function showIndicators () {
-  gsap.fromTo('.indicators_img',
+function showConfidence () {
+  gsap.fromTo('.confidence_img',
     {
       duration: 0.5,
       autoAlpha: 0,
-      x: 0,
+        x: -30,
       scrollTrigger: {
-        trigger: ".indicators",
+          trigger: ".confidence",
         start: "top-=150 center",
         scrub: true,
       }
@@ -387,7 +300,7 @@ function showIndicators () {
           each: 0.7
         },
         scrollTrigger: {
-          trigger: ".indicators",
+          trigger: ".confidence",
           start: "top-=150 center",
           end: "bottom-=150 center",
           scrub: true,
@@ -396,16 +309,16 @@ function showIndicators () {
       )
 }
 
-function showPartners () {
-  gsap.fromTo('.trust_item',
+function showIndicators () {
+  gsap.fromTo('.indicator_item',
     { duration: 1,
-      xPercent: -20,
+      xPercent: -30,
       stagger: {
         amount: 1
       },
       ease: "elastic",
       scrollTrigger: {
-        trigger: ".trust",
+        trigger: ".indicator",
         start: "top-=150 center",
         scrub: true,
       }
@@ -415,9 +328,10 @@ function showPartners () {
           amount: 1
         },
         scrollTrigger: {
-          trigger: ".trust",
+          trigger: ".indicator",
           start: "top-=150 center",
-          end: "bottom-=50 center",
+          // end: "bottom-=50 center",
+          end: "center-=100 center",
           scrub: true,
         }
       })
